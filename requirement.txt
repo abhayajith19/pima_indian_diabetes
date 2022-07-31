@@ -153,3 +153,4 @@ widgetsnbextension==3.6.0
 xgboost==1.6.1
 xkit==0.0.0
 zipp==3.8.0
+gunicorn
