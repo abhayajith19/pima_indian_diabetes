@@ -6,8 +6,8 @@ import pandas as pd
 app = Flask(__name__)
 
 
-model = joblib.load("pima_indian_diabetes\model.pkl")
-scale = joblib.load("pima_indian_diabetes\scale.pkl")
+model = joblib.load("model.pkl")
+scale = joblib.load("scale.pkl")
 
 
 @app.route("/")
@@ -42,7 +42,7 @@ def predict():
     else: 
         valPred = round(prediction[0][0],3) 
         print(f"The Round val {valPred*100}%") 
-        return render_template('result.html',pred=f'Congratulations!!!, You are in a Safe Zone.\n\n Probability of you being a non-diabetic is {valPred*100:.2f}%.\n\n Advice : Exercise Regularly and maintain like this..!') 
+        return render_template('result.html',pred=f'Congratulations!\n\n You are in a Safe Zone.\n\n Probability of you being a non-diabetic is {valPred*100:.2f}%.\n\n Advice : Exercise Regularly and maintain like this..!') 
 
     
 
