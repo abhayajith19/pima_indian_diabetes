@@ -2,15 +2,16 @@ from flask import Flask,request,url_for,redirect,render_template
 
 import joblib
 import pandas as pd
-import xgboost
 
 app = Flask(__name__)
 
 # model = pickle.load(open("model.pkl","rb"))
 # model = pickle.load(open("scale.pkl","rb"))
+# pip freeze > requirements
 
-model = joblib.load("model2.pkl")
-scale = joblib.load("scale.pkl")
+
+model = joblib.load("model1.pkl")
+scale = joblib.load("scale1.pkl")
 
 
 @app.route("/")
@@ -36,6 +37,7 @@ def predict():
 
     # model prediction 
     prediction= model.predict_proba(rowDF_new) 
+    print(prediction)
     print(f"The Predicted values is :{prediction[0][1]}") 
     if prediction[0][1] >= 0.5: 
         valPred = round(prediction[0][1],3) 
