@@ -5,13 +5,9 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# model = pickle.load(open("model.pkl","rb"))
-# model = pickle.load(open("scale.pkl","rb"))
-# pip freeze > requirements
 
-
-model = joblib.load("model1.pkl")
-scale = joblib.load("scale1.pkl")
+model = joblib.load("pima_indian_diabetes\model.pkl")
+scale = joblib.load("pima_indian_diabetes\scale.pkl")
 
 
 @app.route("/")
@@ -42,7 +38,7 @@ def predict():
     if prediction[0][1] >= 0.5: 
         valPred = round(prediction[0][1],3) 
         print(f"The Round val {valPred*100}%") 
-        return render_template('result.html',pred=f'You have a chance of having diabetes.\n\nProbability of you being a diabetic is {valPred*100}%.\n\nAdvice : Exercise Regularly') 
+        return render_template('result.html',pred=f'You have a chance of having diabetes.\n\nProbability of you being a diabetic is {valPred*100:.2f}%.\n\nAdvice : Exercise Regularly') 
     else: 
         valPred = round(prediction[0][0],3) 
         print(f"The Round val {valPred*100}%") 
